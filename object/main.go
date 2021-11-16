@@ -1,14 +1,8 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 )
-
-func prettyPrint(i interface{}) string {
-	s, _ := json.MarshalIndent(i, "", "  ")
-	return string(s)
-}
 
 func main() {
 	runeToInt := func(r rune) int {

@@ -15,7 +15,6 @@ func main() {
 	t.addWord("bbc", 1)
 	t.addWord("cbc", 2)
 	t.addWord("cc", 3)
-
 	fmt.Println(prettyPrint(t))
 
 	bbcNode := t.node("bbc")
@@ -28,7 +27,7 @@ func main() {
 }
 
 type trie struct {
-	Nodes      [][]node
+	Nodes      []node
 	atoi       func(rune) int
 	nOfLetters int
 }
@@ -41,9 +40,7 @@ type node struct {
 
 func newTrie(atoi func(rune) int, nOfLetters int) *trie {
 	return &trie{
-		Nodes: [][]node{
-			make([]node, nOfLetters),
-		},
+		Nodes:      make([]node, nOfLetters),
 		atoi:       atoi,
 		nOfLetters: nOfLetters,
 	}
@@ -52,9 +49,9 @@ func newTrie(atoi func(rune) int, nOfLetters int) *trie {
 func (n *node) initialize(debug rune, rest []rune, id int, t *trie) {
 	n.Debug = string(debug)
 	if n.OffspringRow == nil {
-		t.Nodes = append(t.Nodes, make([]node, t.nOfLetters))
-		row := len(t.Nodes) - 1
+		row := len(t.Nodes)
 		n.OffspringRow = &row
+		t.Nodes = append(t.Nodes, make([]node, t.nOfLetters)...)
 	}
 	if len(rest) == 0 {
 		id := int(id)
@@ -70,13 +67,13 @@ func (n *node) addChars(chars []rune, id int, t *trie) {
 	}
 	r := chars[0]
 	row := *n.OffspringRow
-	child := &t.Nodes[row][t.atoi(r)]
+	child := &(t.Nodes[row+t.atoi(r)])
 	child.initialize(r, chars[1:], id, t)
 }
 
 func (t *trie) addChars(chars []rune, id int) {
 	initialRow := 0
-	rootNode := node{
+	rootNode := &node{
 		OffspringRow: &initialRow,
 	}
 	rootNode.addChars(chars, id, t)
