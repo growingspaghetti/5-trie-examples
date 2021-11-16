@@ -45,8 +45,8 @@ func (s *sparse) addParentInfo() {
 		if parent.OffspringRow == nil {
 			continue
 		}
+		r := int(*parent.OffspringRow)
 		for i := s.nOfLetters - 1; i >= 0; i-- {
-			r := int(*parent.OffspringRow)
 			node := &s.Nodes[r+i]
 			if node.isPhantom() {
 				continue
@@ -72,7 +72,7 @@ func (t *trie) node(word string) (*node, int) {
 	}
 	stack := newStack()
 	stack.push(rootNode, -1)
-	for _, r := range word {
+	for _, rune := range word {
 		if stack.isEmpty() {
 			return nil, -1
 		}
@@ -80,9 +80,8 @@ func (t *trie) node(word string) (*node, int) {
 		if parent.OffspringRow == nil {
 			return nil, -1
 		}
-		i := int(*parent.OffspringRow)
-		row := i / t.nOfLetters
-		dest := t.accumBase(row) + t.atoi(r)
+		r := int(*parent.OffspringRow)
+		dest := t.accumBase(r/t.nOfLetters) + t.atoi(rune)
 		if dest > len(t.Nodes)-1 {
 			return nil, -1
 		}
@@ -93,7 +92,7 @@ func (t *trie) node(word string) (*node, int) {
 		if *node.Check != order {
 			return nil, -1
 		}
-		stack.push(node, i+t.atoi(r))
+		stack.push(node, r+t.atoi(rune))
 	}
 	if stack.isEmpty() {
 		return nil, -1

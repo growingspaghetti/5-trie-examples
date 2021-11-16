@@ -31,6 +31,9 @@ func (t *trie) node(word string) *trie {
 			return nil
 		}
 		parent := stack.pop()
+		if len(parent.Children) == 0 {
+			return nil
+		}
 		child := &parent.Children[t.atoi(r)]
 		stack.push(child)
 	}
@@ -46,6 +49,9 @@ func (t *trie) node(word string) *trie {
 
 func (t *trie) ids() []int {
 	ids := make([]int, 0)
+	if t == nil {
+		return ids
+	}
 	stack := Stack{
 		data: []*trie{t},
 	}

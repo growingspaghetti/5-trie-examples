@@ -32,15 +32,16 @@ func (t *trie) node(word string) *node {
 			&rootNode,
 		},
 	}
-	for _, r := range word {
+	for _, rune := range word {
 		if stack.isEmpty() {
 			return nil
 		}
 		parent := stack.pop()
-		if parent.OffspringRow != nil {
-			i := int(*parent.OffspringRow)
-			stack.push(&t.Nodes[i+t.atoi(r)])
+		if parent.OffspringRow == nil {
+			return nil
 		}
+		r := int(*parent.OffspringRow)
+		stack.push(&t.Nodes[r+t.atoi(rune)])
 	}
 	if stack.isEmpty() {
 		return nil
@@ -71,8 +72,8 @@ func (t *trie) ids(n *node) []int {
 		if parent.OffspringRow == nil {
 			continue
 		}
+		r := int(*parent.OffspringRow)
 		for i := t.nOfLetters - 1; i >= 0; i-- {
-			r := int(*parent.OffspringRow)
 			stack.push(&t.Nodes[r+i])
 		}
 	}
