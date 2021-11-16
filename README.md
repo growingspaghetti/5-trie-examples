@@ -6,29 +6,34 @@ I'm developing a dictionary app and wanted to add prefix-search functionality to
 
 This repository has got 5 elementary implementations of trie. Their differences would contribute to your understanding of how the data structure evolved.
 
-[1. playground](https://play.golang.org/p/hgfKw5y5Avv)
+[1. playground](https://play.golang.org/p/86YVjSknIj4)
 ```bash
 go run object/*
+go test object/*
 ```
 
-[2. playground](https://play.golang.org/p/K0VHxdfvpxs)
+[2. playground](https://play.golang.org/p/jluCmviHRY-)
 ```bash
 go run table/*
+go test table/*
 ```
 
-[3. playground](https://play.golang.org/p/8w3W5FEcv_i)
+[3. playground](https://play.golang.org/p/9hioUJklb8g)
 ```bash
 go run array/*
+go test array/*
 ```
 
-[4. playground](https://play.golang.org/p/wDEgeo0GBU7)
+[4. playground](https://play.golang.org/p/cYbt1pA3E0Q)
 ```bash
 go run triple/*
+go test triple/*
 ```
 
-[5. playground](https://play.golang.org/p/qry5tFlxBan)
+[5. playground](https://play.golang.org/p/Ti1XiNk5L1I)
 ```bash
 go run double/*
+go test double/*
 ```
 
 # background
@@ -306,29 +311,34 @@ In my implementation, I used a hashmap to map those old values into new ones. It
 このレポジトリにはトライ木の基礎的な実装が5つあり、その違いがこのデータ構造の進化の理解に役立てばと思っています。
 
 
-[1. playground](https://play.golang.org/p/hgfKw5y5Avv)
+[1. playground](https://play.golang.org/p/86YVjSknIj4)
 ```bash
 go run object/*
+go test object/*
 ```
 
-[2. playground](https://play.golang.org/p/K0VHxdfvpxs)
+[2. playground](https://play.golang.org/p/jluCmviHRY-)
 ```bash
 go run table/*
+go test table/*
 ```
 
-[3. playground](https://play.golang.org/p/8w3W5FEcv_i)
+[3. playground](https://play.golang.org/p/9hioUJklb8g)
 ```bash
 go run array/*
+go test array/*
 ```
 
-[4. playground](https://play.golang.org/p/wDEgeo0GBU7)
+[4. playground](https://play.golang.org/p/cYbt1pA3E0Q)
 ```bash
 go run triple/*
+go test triple/*
 ```
 
-[5. playground](https://play.golang.org/p/qry5tFlxBan)
+[5. playground](https://play.golang.org/p/Ti1XiNk5L1I)
 ```bash
 go run double/*
+go test double/*
 ```
 
 # 背景
