@@ -104,15 +104,14 @@ func newSparse(atoi func(rune) int, nOfLetters int) *sparse {
 
 func (n *node) initialize(debug rune, rest []rune, id int, t *sparse) {
 	n.Debug = string(debug)
+	if len(rest) == 0 {
+		id := int(id)
+		n.Id = &id
+	}
 	if n.OffspringRow == nil {
 		row := len(t.Nodes)
 		n.OffspringRow = &row
 		t.Nodes = append(t.Nodes, make([]node, t.nOfLetters)...)
-	}
-	if len(rest) == 0 {
-		id := int(id)
-		n.Id = &id
-		return
 	}
 	n.addChars(rest, id, t)
 }

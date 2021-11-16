@@ -51,15 +51,14 @@ func newTrie(atoi func(rune) int, nOfLetters int) *trie {
 
 func (n *node) initialize(debug rune, rest []rune, id int, t *trie) {
 	n.Debug = string(debug)
+	if len(rest) == 0 {
+		id := int(id)
+		n.Id = &id
+	}
 	if n.OffspringRow == nil {
 		t.Nodes = append(t.Nodes, make([]node, t.nOfLetters))
 		row := len(t.Nodes) - 1
 		n.OffspringRow = &row
-	}
-	if len(rest) == 0 {
-		id := int(id)
-		n.Id = &id
-		return
 	}
 	n.addChars(rest, id, t)
 }

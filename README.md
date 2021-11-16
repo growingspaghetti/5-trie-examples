@@ -132,6 +132,12 @@ The main disadvantage is that information is so sparse, especially when it's got
 
 It's not a big deal to slice a table by row, splice them and make a concatenated single line of data.
 
+![dangling pointer](./dangle-1.png)
+
+![dangling pointer](./dangle-2.png)
+
+One tricky thing was that `append()` silently created dangling pointers. [doc.rust-lang.org](https://doc.rust-lang.org/nomicon/ownership.html) 
+
 # shortening the array
 
 The meaning of the serializing procedure above is, addition of a six-space padding for each row.
@@ -425,6 +431,12 @@ type node struct {
 ![serializing table into an array](./serialize.png)
 
 長方形を一行に並べることは、とくに造作ない。
+
+![dangling pointer](./dangle-1.png)
+
+![dangling pointer](./dangle-2.png)
+
+`append()` が密かにダングリングポインタを作っていたのははまりどころだった。 [doc.rust-lang.org](https://doc.rust-lang.org/nomicon/ownership.html) 
 
 # 行を縮める
 

@@ -38,7 +38,7 @@ func (t *trie) node(word string) *node {
 		}
 		parent := stack.pop()
 		if parent.OffspringRow == nil {
-			continue
+			return nil
 		}
 		r := int(*parent.OffspringRow)
 		row := &t.Nodes[r]
