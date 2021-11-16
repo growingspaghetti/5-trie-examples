@@ -13,9 +13,9 @@ func (s *Stack) pop() *node {
 	if last < 0 {
 		panic("stack is empty")
 	}
-	t := s.data[last]
+	n := s.data[last]
 	s.data = s.data[:last]
-	return t
+	return n
 }
 
 func (s *Stack) isEmpty() bool {
@@ -55,6 +55,9 @@ func (t *trie) node(word string) *node {
 
 func (t *trie) ids(n *node) []int {
 	ids := make([]int, 0)
+	if n == nil {
+		return ids
+	}
 	stack := Stack{
 		data: []*node{
 			n,
