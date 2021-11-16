@@ -57,6 +57,14 @@ func (s *sparse) addParentInfo() {
 	}
 }
 
+func (t *trie) accumBase(row int) int {
+	acc := 0
+	for i := 0; i <= row; i++ {
+		acc += t.Base[i]
+	}
+	return acc
+}
+
 func (t *trie) node(word string) (*node, int) {
 	initialRow := 0
 	rootNode := &node{
@@ -73,7 +81,8 @@ func (t *trie) node(word string) (*node, int) {
 			return nil, -1
 		}
 		i := int(*parent.OffspringRow)
-		dest := i + t.atoi(r)
+		row := i / t.nOfLetters
+		dest := t.accumBase(row) + t.atoi(r)
 		if dest > len(t.Nodes)-1 {
 			return nil, -1
 		}
@@ -84,7 +93,7 @@ func (t *trie) node(word string) (*node, int) {
 		if *node.Check != order {
 			return nil, -1
 		}
-		stack.push(node, dest)
+		stack.push(node, i+t.atoi(r))
 	}
 	if stack.isEmpty() {
 		return nil, -1
@@ -113,8 +122,9 @@ func (t *trie) ids(n *node, order int) []int {
 			continue
 		}
 		r := int(*parent.OffspringRow)
+		base := t.accumBase(r / t.nOfLetters)
 		for i := t.nOfLetters - 1; i >= 0; i-- {
-			dest := r + i
+			dest := base + i
 			if dest > len(t.Nodes)-1 {
 				continue
 			}
@@ -125,7 +135,7 @@ func (t *trie) ids(n *node, order int) []int {
 			if *node.Check != ord {
 				continue
 			}
-			stack.push(node, dest)
+			stack.push(node, r+i)
 		}
 	}
 	return ids
