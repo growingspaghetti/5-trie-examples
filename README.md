@@ -130,7 +130,7 @@ The main disadvantage is that information is so sparse, especially when it's got
 
 ![serializing table into an array](./serialize.png)
 
-It's not a big deal to splice a table by row and make a concatenated single slice of data.
+It's not a big deal to slice a table by row, splice them and make a concatenated single line of data.
 
 # shortening the array
 
@@ -426,7 +426,7 @@ type node struct {
 
 長方形を一行に並べることは、とくに造作ない。
 
-# 列を縮める
+# 行を縮める
 
 上の直列化の操作は、言ってみれば、6セル分のパディングを反復的にかけたことに等しい。
 
